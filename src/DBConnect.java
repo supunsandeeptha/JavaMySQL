@@ -56,6 +56,9 @@ public class DBConnect {
     }
         public void addRecords () {
 
+            //variable to find the status of the execution
+            int status = -1;
+
             Scanner sc = new Scanner(System.in);
             //id
             System.out.println("Please enter your id");
@@ -88,7 +91,15 @@ public class DBConnect {
                 preparedStatement.setString(4, jobTitle);
 
                 //executing the prepared statement
-                System.out.println("User has been successfully added ");
+                status = preparedStatement.executeUpdate();
+
+                if (status == 1){
+                    System.out.println("User has been successfully added ");
+                }else{
+                    System.out.println("User Adding Error !!!1 Please contact Developer");
+                }
+
+
             } catch (SQLException e) {
 
                 System.out.println(e.getMessage());
